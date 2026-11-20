@@ -1,0 +1,10 @@
+import { Router } from "express";
+import { clearHistory, deleteHistoryItem, listHistory } from "../controllers/historyController.js";
+import { requireAuth } from "../middleware/auth.js";
+import { requireDatabase } from "../middleware/requireDatabase.js";
+const router = Router();
+router.use(requireDatabase, requireAuth);
+router.get("/", listHistory);
+router.delete("/", clearHistory);
+router.delete("/:id", deleteHistoryItem);
+export default router;
